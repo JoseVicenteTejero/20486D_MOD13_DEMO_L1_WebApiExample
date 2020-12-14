@@ -1,13 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApiExample.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApiExample.Models;
+
 
 
 namespace WebApiExample.Controllers
 {
+        [Route("api/[controller]")]
+        [ApiController]
     public class PersonController : Controller
     {
         private List<Person> _people = new List<Person>();
@@ -21,10 +24,12 @@ namespace WebApiExample.Controllers
         }
 
         [HttpGet]
+        [Produces("application/xml")]
         public List<Person> GetAll()
         {
             return _people;
         }
+
         [HttpGet("{id}")]
         public ActionResult<Person> GetPersonById(int id)
         {
